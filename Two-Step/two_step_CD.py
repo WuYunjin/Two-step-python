@@ -56,9 +56,9 @@ if __name__ == "__main__":
 
     
     np.set_printoptions(precision=4)
-    np.random.seed(1234)
+    np.random.seed(1)
     N = 5
-    T = 1000
+    T = 500
     data = np.random.uniform(size=(N,T))
     B = np.eye(N)
 
@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
     data = np.matmul(B,data)+E/100
 
-    B_estimate,W_m = two_step_CD(data,30)
+    B_estimate,W_m = two_step_CD(data,10)
 
     print('B_truth:\n {}'.format(B))
     print('B_estimate:\n {}'.format(B_estimate))

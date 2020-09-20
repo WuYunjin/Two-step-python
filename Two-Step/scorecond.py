@@ -127,8 +127,8 @@ def scorecond(data, q=None, bdwidth=None, cova=None):
     ###!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     pr = sps.csc_matrix(( ker.reshape(-1), (ix.astype(int).reshape(-1),np.array([0]*len(ix.reshape(-1))))),shape=(1+M[p-1].astype(int),1),dtype=np.float)/n # joint prob. of cells
 
-    logp = sps.csc_matrix(np.zeros(shape=(1+M[p-1].astype(int),1)),shape=(1+M[p-1].astype(int),1))
-
+    # logp = sps.csc_matrix(np.zeros(shape=(1+M[p-1].astype(int),1)),shape=(1+M[p-1].astype(int),1))
+    logp = np.zeros(shape=(1+M[p-1].astype(int),1))
     if p > 1:
         pm = np.sum(pr.reshape(Mi.astype(int),mx[p-1].astype(int),order='F'), axis=1) # marginal prob. (Mi = M(p-1))
         pm =  (pm*np.ones((1,mx[p-1].astype(int)))).reshape(1+M[p-1].astype(int),1,order='F')
@@ -144,7 +144,7 @@ def scorecond(data, q=None, bdwidth=None, cova=None):
     
     # Compute the conditional score
 
-    tmp = np.array([logp[i].toarray() for i in ix[nr,:].astype(int)]).reshape(kerp.shape)
+    tmp = np.array([logp[i] for i in ix[nr,:].astype(int)]).reshape(kerp.shape)
     psi = np.sum(tmp*kerp ,axis=1)   #nr = 1:n repeated p times
     psi = psi.reshape(n, p,order='F')/bdwidth
 
