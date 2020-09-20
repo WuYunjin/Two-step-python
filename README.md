@@ -8,7 +8,7 @@ A dataset X of non-Gaussian variables is required as input, together with a posi
 
 Two-Step outputs the causal coefficients matrix B, from X = BX + E.
 
-In B, the causal direction goes from column to row, such that a matrix entry Bij, implies Xj --> Xi
+In B, the causal direction goes from column to row, such that a matrix entry Bij, implies Xj --> Xi.
 
-A toy example is given in 'two-step/two_step_CD.py'
+A toy example to run this algorithm is given in 'Two-Step/two_step_CD.py'.
 
